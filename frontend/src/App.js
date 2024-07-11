@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import './App.css';
+import React, { useState, useEffect, Fragment } from 'react'
+import './style/App.css';
+import Topbar from './components/navigation/topbar/Topbar';
+import Sign_up from './components/pages/Sign_up';
+import Sign_in from './components/pages/Sign_in';
 
 function App() {
   const [data, setData] = useState([{}])
+  const current_path = window.location.pathname
 
   useEffect(() => {
     fetch("members").then(
@@ -16,16 +20,18 @@ function App() {
   }, [])
 
   return (
-    <div>
-      {(typeof data.members === "undefined") ? (
-        <p>Loading ...</p>
-      ) : (
-        data.members.map((member, i) => (
-          <p key={i}>{member}</p>
-        ))
-      )}
+    <Fragment>
+      <Topbar />
 
-    </div>
+      {(current_path === "/sign_up") ? (
+        <Sign_up />
+      ) : null}
+
+      {(current_path === "/sign_in") ? (
+        <Sign_in />
+      ) : null}
+
+    </Fragment>
   )
 }
 
