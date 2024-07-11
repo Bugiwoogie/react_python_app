@@ -28,12 +28,19 @@ function Topbar() {
                 </a>
               </div>
               <div className="col-9">
-
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      AI content
+                  </button>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/">Create cover letter</a></li>
+                      <li><a class="dropdown-item" href="/ai_partner">AI Girlfirend/Boyfriend</a></li>
+                  </ul>
+                </div>
               </div>
               <div className="col-2">
                 <div className="row">
                   <div className="col">
-
                   </div>
                   <div className="col-5">
                     {(render_sign_in) ? (

@@ -4,7 +4,7 @@ Things to do on my list:
 
 - user_authentication
 - database ?!?
-- idea for the project :7
+- protection against sql injections, CSRF etc
 
 
 first create a venv in server folder
