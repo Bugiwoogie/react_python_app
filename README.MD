@@ -1,5 +1,14 @@
-Here i got a web application using react for the frontend and python-flask as backend
+Here i got a web application using react for the frontend and python-flask as backend and <3<3<3 Redux <3<3<3 for data storage 
+
+Things to do on my list:
+
+- user_authentication
+- database ?!?
+- idea for the project :7
+
+
+first create a venv in server folder
 
 start the server using cd server && python server.python
 
-start the frontend using cd fronten && npm start
+start the frontend using cd frontend && npm start

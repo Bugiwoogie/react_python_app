@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 const sign_button_style = {
   width: "2.9rem",
@@ -7,6 +8,9 @@ const sign_button_style = {
 }
 
 function Topbar() {
+  const render_sign_in = useSelector((state) => state.ui.render_sign_in);
+  const render_sign_up = useSelector((state) => state.ui.render_sign_up);
+  
   return (
     <div>
         <nav className="navbar bg-body-tertiary">
@@ -32,18 +36,22 @@ function Topbar() {
 
                   </div>
                   <div className="col-5">
-                    <a href="/sign_in">
-                      <button style={sign_button_style}>
-                        	Sign in
-                      </button>
-                    </a>
+                    {(render_sign_in) ? (
+                      <a href="/sign_in">
+                        <button style={sign_button_style}>
+                            Sign in
+                        </button>
+                      </a>
+                    ) : null}
                   </div>
                   <div className="col-3">
-                    <a href="/sign_up">
-                      <button style={sign_button_style}>
-                        Sign up
-                      </button>
-                    </a>
+                    {(render_sign_up) ? (
+                      <a href="/sign_up">
+                        <button style={sign_button_style}>
+                          Sign up
+                        </button>
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </div>
