@@ -5,6 +5,7 @@ import Sign_up from './components/pages/Sign_up';
 import Sign_in from './components/pages/Sign_in';
 import AiPartner from './components/pages/AiPartner'
 import { useSelector } from 'react-redux';
+import ForgotPassword from './components/pages/ForgotPassword';
 
 function App() {
   // const [data, setData] = useState([{}])
@@ -23,21 +24,27 @@ function App() {
 
   return (
     <Fragment>
-      {(render_topbar) ? (
-        <Topbar />
-      ) : null}
+      <div>
+        {/* Topbar */}
+        {(render_topbar) ? (
+          <Topbar />
+        ) : null}
 
-      {(current_path === "/sign_up") ? (
-        <Sign_up />
-      ) : null}
+        {/* User authentication */}
+        {(current_path === "/sign_up") ? (
+          <Sign_up />
+        ) : null}
+        {(current_path === "/sign_in") ? (
+          <Sign_in />
+        ) : null}
+        {(current_path === "/forgot_password") ? (
+          <ForgotPassword />
+        ) : null}
 
-      {(current_path === "/sign_in") ? (
-        <Sign_in />
-      ) : null}
-      {(current_path === "/ai_partner") ? (
-        <AiPartner />
-      ) : null}      
-
+        {(current_path === "/ai_partner") ? (
+          <AiPartner />
+        ) : null}         
+      </div>
     </Fragment>
   )
 }

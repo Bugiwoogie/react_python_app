@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux';
 
 const sign_button_style = {
@@ -10,6 +10,8 @@ const sign_button_style = {
 function Topbar() {
   const render_sign_in = useSelector((state) => state.ui.render_sign_in);
   const render_sign_up = useSelector((state) => state.ui.render_sign_up);
+  const is_authenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
   
   return (
     <div>
@@ -18,23 +20,23 @@ function Topbar() {
               <div className="col-1">
                 <a className="navbar-brand" href="/">
                   <img 
-                  src="../../../logo.jpg" 
-                  alt="Logo" 
-                  width="30" 
-                  height="24" 
-                  className="d-inline-block align-text-top" 
-                  style={{borderRadius: "100%"}}>
+                    src="../../../logo.jpg" 
+                    alt="Logo" 
+                    width="40" 
+                    height="40" 
+                    className="d-inline-block align-text-top" 
+                    style={{borderRadius: "100%"}}>
                   </img>
                 </a>
               </div>
               <div className="col-9">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="dropdown">
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       AI content
                   </button>
-                  <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="/">Create cover letter</a></li>
-                      <li><a class="dropdown-item" href="/ai_partner">AI Girlfirend/Boyfriend</a></li>
+                  <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="/">Create cover letter</a></li>
+                      <li><a className="dropdown-item" href="/ai_partner">AI Girlfirend/Boyfriend</a></li>
                   </ul>
                 </div>
               </div>
@@ -42,24 +44,41 @@ function Topbar() {
                 <div className="row">
                   <div className="col">
                   </div>
-                  <div className="col-5">
-                    {(render_sign_in) ? (
-                      <a href="/sign_in">
-                        <button style={sign_button_style}>
-                            Sign in
-                        </button>
-                      </a>
-                    ) : null}
-                  </div>
-                  <div className="col-3">
-                    {(render_sign_up) ? (
-                      <a href="/sign_up">
-                        <button style={sign_button_style}>
-                          Sign up
-                        </button>
-                      </a>
-                    ) : null}
-                  </div>
+                  {(is_authenticated) ? (
+                    <Fragment>
+                      <div className="col-5">Welcome, {user.className}</div>
+                      <div className="col-3">Profile Settings</div>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <div className="col-5">
+                        {(render_sign_in) ? (
+                          <a 
+                            href="/sign_in"
+                            id="sign_in_button_topbar"
+                            >
+                            <button style={sign_button_style}>
+                                Sign in
+                            </button>
+                          </a>
+                        ) : null}
+                      </div>
+                      <div className="col-3">
+                        {(render_sign_up) ? (
+                          <a 
+                            href="/sign_up"
+                            id="sign_up_button_topbar">
+                            <button style={sign_button_style}>
+                              Sign up
+                            </button>
+                          </a>
+                        ) : null}
+                      </div>
+                    </Fragment>
+
+                  )}
+
+
                 </div>
               </div>
           </div>
