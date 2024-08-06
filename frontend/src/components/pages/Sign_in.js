@@ -24,7 +24,6 @@ function Sign_in() {
 
 
     const handleSubmit = async (e) => {
-        console.log("handling submit")
         e.preventDefault();
     
         try {
@@ -51,7 +50,7 @@ function Sign_in() {
             console.error('Login error:', error.response.data);
             // Handle network errors
           }
-        };
+    };
 
     const handleChange = (event) => {
         const { value, name } = event.target;
@@ -63,7 +62,7 @@ function Sign_in() {
         } else if (name === 'remember_me_checkbox') {
             setRememberMe(!remember_me)
         }
-        };
+    };
 
       return (
         <Fragment>
@@ -119,22 +118,18 @@ function Sign_in() {
                             <a href="/forgot_password">Forgot password?</a>
                         </div>
                     </div>
-
                     <div className="text-center">
                         <p>Not a member? <a href="/sign_up">Register</a></p>
                         <p>or sign up with:</p>
                         <button  type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
                             <i className="fab fa-facebook-f"></i>
                         </button>
-
                         <button  type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
                             <i className="fab fa-google"></i>
                         </button>
-
                         <button  type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
                             <i className="fab fa-twitter"></i>
                         </button>
-
                         <button  type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
                             <i className="fa-brands fa-github"></i>
                         </button>

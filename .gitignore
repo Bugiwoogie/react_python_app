@@ -1,5 +1,6 @@
 # Backend
 /server/venv
+/server/.env
 
 #Frontend
 # dependencies
@@ -23,3 +24,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/server/__pycache__
+/server/models/__pycache__
