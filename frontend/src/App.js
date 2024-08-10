@@ -29,7 +29,6 @@ function App() {
         {(render_topbar) ? (
           <Topbar />
         ) : null}
-
         {/* User authentication */}
         {(current_path === "/sign_up") ? (
           <Sign_up />

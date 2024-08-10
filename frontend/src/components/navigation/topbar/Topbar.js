@@ -12,7 +12,7 @@ function Topbar() {
   const render_sign_up = useSelector((state) => state.ui.render_sign_up);
   const is_authenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
-  
+  console.log(user.payload.username)
   return (
     <div>
         <nav className="navbar bg-body-tertiary">
@@ -46,7 +46,7 @@ function Topbar() {
                   </div>
                   {(is_authenticated) ? (
                     <Fragment>
-                      <div className="col-5">Welcome, {user.className}</div>
+                      <div className="col-5" style={{marginRight: "22px"}}>Welcome, {user.payload.username}!</div>
                       <div className="col-3">Profile Settings</div>
                     </Fragment>
                   ) : (
@@ -75,10 +75,7 @@ function Topbar() {
                         ) : null}
                       </div>
                     </Fragment>
-
                   )}
-
-
                 </div>
               </div>
           </div>

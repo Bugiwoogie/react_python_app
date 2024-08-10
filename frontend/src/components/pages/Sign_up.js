@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideSignUp } from '../../redux/reducers/uiSlice';
 import { registrationSuccess } from '../../redux/reducers/authSlice';
 import { showIncorrectPassword, hideIncorrectPassword } from '../../redux/reducers/uiSlice';
+import CryptoJS from 'crypto-js';
 
 function Sign_up() {
     const dispatch = useDispatch();
@@ -21,12 +22,14 @@ function Sign_up() {
         } else {
             dispatch(hideIncorrectPassword())
         }
+
+        const hashed_password = CryptoJS.SHA256(password).toString();
     
         try {
             const response = await axios.post('/register', {
               username,
               email,
-              password,
+              hashed_password,
             });
       
             if (response.data.success) {

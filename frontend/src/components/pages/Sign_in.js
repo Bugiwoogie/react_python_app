@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideSignIn } from '../../redux/reducers/uiSlice';
 import { loginSuccess } from '../../redux/reducers/authSlice';
+import CryptoJS from 'crypto-js';
 
 function Sign_in() {
     const dispatch = useDispatch();
@@ -25,11 +26,15 @@ function Sign_in() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const hashed_password = CryptoJS.SHA256(password).toString();
+
     
         try {
             const response = await axios.post('/login', {
               username,
-              password,
+              hashed_password,
+              remember_me
             });
       
             if (response.data.success) {
@@ -76,7 +81,7 @@ function Sign_in() {
                             className="form-control"
                             onChange={handleChange} 
                         />
-                        <label className="form-label">Email address</label>
+                        <label className="form-label">Username</label>
                     </div>
                     <div data-mdb-input-init className="form-outline mb-4">
                         <input 
