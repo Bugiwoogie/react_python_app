@@ -27,3 +27,4 @@ yarn-error.log*
 server/.env
 /server/__pycache__
 /server/models/__pycache__
+frontend/.env
