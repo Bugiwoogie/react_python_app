@@ -2,9 +2,10 @@ Here i got a web application using react for the frontend and python-flask as ba
 
 Things to do on my list:
 
-- user_authentication
-- database ?!?
-- protection against sql injections, CSRF etc
+- implementation of several AIs for image generation
+- creatiung my ai boyfriend/girlfriend
+- implementation of 3d model generation by text
+
 
 
 first create a venv in server folder

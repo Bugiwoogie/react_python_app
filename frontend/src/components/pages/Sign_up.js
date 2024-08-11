@@ -14,6 +14,7 @@ function Sign_up() {
     const [password, setPassword] = useState('');
     const [password_confirmation, setPasswordConfirmation] = useState('')
     const show_password_incorrect = useSelector((state) => state.ui.show_password_incorrect_on_registration_page);
+    const csrf_token = useSelector((state) => state.auth.csrf_token);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,6 +31,10 @@ function Sign_up() {
               username,
               email,
               hashed_password,
+            }, {
+                headers: {
+                    'X-CSRF-Token': csrf_token
+                }
             });
       
             if (response.data.success) {

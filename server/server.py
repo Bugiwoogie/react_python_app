@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_login import LoginManager, login_user
+from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import generate_csrf
 from dotenv import load_dotenv
 from models.user import db, User
 import os
@@ -13,6 +15,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY')
+csrf = CSRFProtect(app)
 
 # Initialize the SQLAlchemy db instance
 db.init_app(app)
@@ -25,6 +28,10 @@ login_manager.init_app(app)
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
     return User.query.get(int(user_id))
+
+@app.route('/csrf-token', methods=['GET'])
+def get_csrf_token():
+    return jsonify({'csrf_token': generate_csrf()})
 
 # Create the database tables
 with app.app_context():

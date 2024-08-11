@@ -2,15 +2,18 @@ import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideSignIn } from '../../redux/reducers/uiSlice';
-import { loginSuccess } from '../../redux/reducers/authSlice';
+import { loginSuccess, loginSuccessRemember } from '../../redux/reducers/authSlice';
 import CryptoJS from 'crypto-js';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Sign_in() {
     const dispatch = useDispatch();
+    const navigate = useNavigate(); // Initialize the navigate function
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [remember_me, setRememberMe] = useState(true)
     const render_sign_in = useSelector((state) => state.ui.render_sign_in);
+    const csrf_token = useSelector((state) => state.auth.csrf_token);
     
     if(render_sign_in) {
         dispatch(hideSignIn())
@@ -32,20 +35,28 @@ function Sign_in() {
     
         try {
             const response = await axios.post('/login', {
-              username,
-              hashed_password,
-              remember_me
+                username,
+                hashed_password,
+                remember_me
+            }, 
+            {
+                headers: {
+                    'X-CSRF-Token': csrf_token
+                }
             });
       
             if (response.data.success) {
               // Extract user information from the response
               const user = response.data.user; // Assuming your backend sends user data
       
+
               // Dispatch the loginSuccess action with user information
-              dispatch(loginSuccess(user));
+              (remember_me) ? dispatch(loginSuccessRemember) : dispatch(loginSuccess(user));
+              
       
               // Handle successful login (e.g., redirect)
               console.log('Login successful:', user);
+              navigate('#')
             } else {
               console.error('Login failed:', response.data.message);
               // Handle login errors (e.g., display error message)
