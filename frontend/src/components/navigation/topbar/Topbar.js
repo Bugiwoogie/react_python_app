@@ -13,8 +13,6 @@ function Topbar() {
   const is_authenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
 
-  console.log(user)
-
   return (
     <div>
         <nav className="navbar bg-body-tertiary">
@@ -39,6 +37,8 @@ function Topbar() {
                   <ul className="dropdown-menu">
                       <li><a className="dropdown-item" href="/">Create cover letter</a></li>
                       <li><a className="dropdown-item" href="/ai_partner">AI Girlfirend/Boyfriend</a></li>
+                      <div class="dropdown-divider"></div>
+                      <li><a className="dropdown-item" href="/image_generator">Image generation</a></li>
                   </ul>
                 </div>
               </div>

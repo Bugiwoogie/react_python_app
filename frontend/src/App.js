@@ -8,6 +8,7 @@ import AiPartner from './components/pages/AiPartner';
 import { useSelector, useDispatch } from 'react-redux';
 import ForgotPassword from './components/pages/ForgotPassword';
 import { csrfTokenReceived } from './redux/reducers/authSlice';
+import ImageGenerator from './components/pages/ImageGenerator';
 
 function App() {
   const current_path = window.location.pathname;
@@ -31,6 +32,7 @@ function App() {
         {current_path === "/sign_in" ? <Sign_in /> : null}
         {current_path === "/forgot_password" ? <ForgotPassword /> : null}
         {current_path === "/ai_partner" ? <AiPartner /> : null}
+        {current_path === "/image_generator" ? <ImageGenerator /> : null}
       </div>
     </Fragment>
   );
