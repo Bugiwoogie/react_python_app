@@ -37,7 +37,7 @@ function Topbar() {
                   <ul className="dropdown-menu">
                       <li><a className="dropdown-item" href="/">Create cover letter</a></li>
                       <li><a className="dropdown-item" href="/ai_partner">AI Girlfirend/Boyfriend</a></li>
-                      <div class="dropdown-divider"></div>
+                      <div className="dropdown-divider"></div>
                       <li><a className="dropdown-item" href="/image_generator">Image generation</a></li>
                   </ul>
                 </div>
