@@ -6,6 +6,9 @@ def get_user_by_username(username):
 def get_user_by_email(email):
   return User.query.filter_by(username=username).first()
 
+def get_user_by_id(user_id):
+  return User.query.get(int(user_id))
+
 def create_user(email, username, password):
   new_user = User(email=email, username=username, password=password)
   db.session.add(new_user)
