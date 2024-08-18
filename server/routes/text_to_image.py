@@ -8,4 +8,10 @@ def generate_microsoft_image_creator_image():
   data = request.get_json()
   prompt = data['prompt']
 
+  if not prompt:
+    return jsonify({'error': 'No prompt provided'}), 400
+  
+  image_url = generate_image(prompt)
+  return jsonify({'image_url': image_url})
+
   images = generate_image(prompt)
