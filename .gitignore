@@ -30,3 +30,4 @@ server/.env
 frontend/.env
 /server/image_generation/__pycache__
 /server/routes/__pycache__
+/server/venv_py310
